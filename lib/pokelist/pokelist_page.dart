@@ -13,9 +13,13 @@ class Pokelist extends StatelessWidget {
         ),
         bottomNavigationBar: BottomNavigation(),
         body: Container(padding: EdgeInsets.only(top: 10, left: 24),
-          child: ListView.builder(itemBuilder: (context,index){
-            return pokeListItem(name: '', imageUrl: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iv/heartgold-soulsilver/25.png',);
-          }),
+          child: Expanded(
+            child: ListView.builder(itemCount: 151,itemBuilder: (context,index){
+                  
+              return index > 0 ?
+               pokeListItem(name: '', imageUrl: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iv/heartgold-soulsilver/$index.png',) : Container();
+            }),
+          ),
         )
         
     );

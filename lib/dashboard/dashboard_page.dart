@@ -11,7 +11,7 @@ class DashboardPage extends StatelessWidget {
           centerTitle: true,
           title: Text('POKEDEX'),
         ),
-        bottomNavigationBar: BottomNavigation(),
+        bottomNavigationBar: BottomNavigation(currentItem: 0),
         body: Stack(
           children: [Container(
             decoration: BoxDecoration(
@@ -28,13 +28,28 @@ class DashboardPage extends StatelessWidget {
               SizedBox(
                 height: 24,
               ),
-              Row(
-                children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: Row(
+                  children: [
+                      DashboardButton(
+                        page:Pokelist(),
+                        title: Text('Veja todos os 150 Pokémons'),
+                        subtitle: Text(
+                          'Visualizar Pokémons ',
+                          style: TextStyle(
+                              color: Color.fromRGBO(217, 74, 74, 1),
+                              fontWeight: FontWeight.w700,
+                              fontSize: 16,
+                              fontFamily: 'Roboto Mono'),
+                        ),
+                      ),
+                    Spacer(),
                     DashboardButton(
-                      page:Pokelist(),
-                      title: Text('Veja todos os 150 Pokémons'),
+                      page: Pokelist(),
+                      title: Text('Crie já seu próprio Pokémon'),
                       subtitle: Text(
-                        'Visualizar Pokémons ',
+                        'Cadastrar novo Pokémon',
                         style: TextStyle(
                             color: Color.fromRGBO(217, 74, 74, 1),
                             fontWeight: FontWeight.w700,
@@ -42,20 +57,8 @@ class DashboardPage extends StatelessWidget {
                             fontFamily: 'Roboto Mono'),
                       ),
                     ),
-                  
-                  DashboardButton(
-                    page: Pokelist(),
-                    title: Text('Crie já seu próprio Pokémon'),
-                    subtitle: Text(
-                      'Cadastrar novo Pokémon',
-                      style: TextStyle(
-                          color: Color.fromRGBO(217, 74, 74, 1),
-                          fontWeight: FontWeight.w700,
-                          fontSize: 16,
-                          fontFamily: 'Roboto Mono'),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
               Expanded(
                 child: Padding(
