@@ -1,9 +1,21 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class pokeListItem extends StatelessWidget {
   final String name;
   final String imageUrl;
   final bool visibility;
+
+  Future fetchDataPokemon() async {
+    final data = await http.get(Uri.parse('https://pokeapi.co/api/v2/pokemon'));
+    if (data.statusCode == 200) {
+      return jsonDecode(data.body);
+    } else {
+      throw Exception('Failed to finish request');
+    }
+  }
 
   const pokeListItem({
     required this.name,
@@ -53,7 +65,7 @@ class pokeListItem extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'Bulbasaur',
+                            name,
                             style: TextStyle(
                               fontFamily: 'Roboto Mono',
                               fontWeight: FontWeight.w500,
@@ -70,7 +82,9 @@ class pokeListItem extends StatelessWidget {
                           )
                         ],
                       ),
-                      Padding(padding: EdgeInsets.only(right: 15),child: Icon(Icons.arrow_forward_ios_rounded))
+                      Padding(
+                          padding: EdgeInsets.only(right: 15),
+                          child: Icon(Icons.arrow_forward_ios_rounded))
                     ],
                   ),
                   SizedBox(height: 4),
